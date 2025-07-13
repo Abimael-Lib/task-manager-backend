@@ -21,4 +21,4 @@ from rest_framework.response import Response
 @permission_classes([IsAuthenticated])
 def prueba_auth(request):
     return Response({"mensaje": "Autenticación OK"})
-
+    
