@@ -14,7 +14,6 @@ import dj_database_url
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,12 +28,18 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 
 
+
+
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
     # apps internas
     'tareas',
-
+    'admin_interface',
+    'colorfield',
 
 
     'django.contrib.admin',
@@ -149,3 +154,30 @@ if 'test' in sys.argv:
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+if os.environ.get('RENDER', '') != 'true':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else: 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'nombre_db', 
+            'USER': 'usuario',
+            'PASSWORD': 'contraseña',
+            'HOST': 'dpg-xxxxxxx',
+            'PORT': '5432',
+        }
+    }
+
+
+
+
+
+
+
+
