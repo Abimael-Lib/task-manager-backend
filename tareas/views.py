@@ -3,6 +3,12 @@ from rest_framework import viewsets, permissions
 from .models import Tarea
 from .serializers import TareaSerializer
 
+
+def index(request):
+    return render(request, 'index.html')
+
+
+
 class TareaViewSet(viewsets.ModelViewSet):
     serializer_class = TareaSerializer
     permission_classes = [permissions.IsAuthenticated]
